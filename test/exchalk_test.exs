@@ -1,9 +1,16 @@
 defmodule ExChalkTest do
   use ExUnit.Case
 
-  test "should style string" do
+  test "should style string with color" do
     actual = ExChalk.red("foo")
     expected = "\e[38;5;1mfoo\e[0m"
+
+    assert actual == expected
+  end
+
+  test "should style string with modifiers" do
+    actual = ExChalk.underline("foo")
+    expected = "\e[4mfoo\e[0m"
 
     assert actual == expected
   end
@@ -23,8 +30,8 @@ defmodule ExChalkTest do
   end
 
   test "should be pipable" do
-    actual = "foo" |> ExChalk.bg_red |> ExChalk.blue
-    expected = "\e[38;5;4m\e[48;5;1mfoo\e[0m\e[0m"
+    actual = "foo" |> ExChalk.bg_red |> ExChalk.blue |> ExChalk.italic
+    expected = "\e[3m\e[38;5;4m\e[48;5;1mfoo\e[0m\e[0m\e[0m"
 
     assert actual == expected
   end
