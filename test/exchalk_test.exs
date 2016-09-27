@@ -14,4 +14,18 @@ defmodule ExChalkTest do
 
     assert actual == expected
   end
+
+  test "sets background" do
+    actual = ExChalk.bg_red("foo")
+    expected = "\e[48;5;1mfoo\e[0m"
+
+    assert actual == expected
+  end
+
+  test "should be pipable" do
+    actual = "foo" |> ExChalk.bg_red |> ExChalk.blue
+    expected = "\e[38;5;4m\e[48;5;1mfoo\e[0m\e[0m"
+
+    assert actual == expected
+  end
 end
