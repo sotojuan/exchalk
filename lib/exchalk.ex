@@ -4,25 +4,25 @@ defmodule ExChalk do
   alias IO.ANSI
 
   @colors [
-            "black",
-            "red",
-            "green",
-            "yellow",
-            "blue",
-            "magenta",
-            "cyan",
-            "white"
-          ]
+    "black",
+    "red",
+    "green",
+    "yellow",
+    "blue",
+    "magenta",
+    "cyan",
+    "white"
+  ]
 
   @modifiers [
-      reset: ANSI.reset,
-      bold: ANSI.bright,
-      dim: ANSI.faint,
-      italic: ANSI.italic,
-      underline: ANSI.underline,
-      hidden: "\e[8m",
-      strikethrough: "\e[9m"
-    ]
+    reset: ANSI.reset,
+    bold: ANSI.bright,
+    dim: ANSI.faint,
+    italic: ANSI.italic,
+    underline: ANSI.underline,
+    hidden: "\e[8m",
+    strikethrough: "\e[9m"
+  ]
 
   for {name, code} <- Enum.with_index(@colors) do
     def unquote(:"#{name}")(str) do
