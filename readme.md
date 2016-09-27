@@ -4,7 +4,71 @@
 
 > Easier terminal styling
 
-This library is a very light abstraction over `IO.ANSI` that makes it easy to style text.
+This library is a very light abstraction over `IO.ANSI` that makes it easy to style text. It's heavily inspired by Node's [chalk](https://github.com/chalk/chalk).
+
+## Install
+
+In your `mix.exs`:
+
+```elixir
+defp deps do
+  [
+    { :exchalk, "~> 0.0.0" }
+  ]
+end
+```
+
+Then run `mix deps.get`.
+
+## Usage
+
+```elixir
+IO.puts ExChalk.red("Hello world!")
+
+# or
+
+"Hello world!"
+  |> ExChalk.red
+  |> ExChalk.italic
+  |> ExChalk.bg_blue
+  |> IO.puts
+```
+
+## Styles
+
+### Modifiers
+
+- `reset`
+- `bold`
+- `dim`
+- `italic` *(not widely supported)*
+- `underline`
+- `inverse`
+- `hidden`
+- `strikethrough` *(not widely supported)*
+
+### Colors
+
+- `black`
+- `red`
+- `green`
+- `yellow`
+- `blue`
+- `magenta`
+- `cyan`
+- `white`
+- `gray`
+
+### Background colors
+
+- `bg_black`
+- `bg_red`
+- `bg_green`
+- `bg_yellow`
+- `bg_blue`
+- `bg_magenta`
+- `bg_cyan`
+- `bg_white`
 
 ## 256-colors
 
