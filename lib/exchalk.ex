@@ -61,14 +61,27 @@ defmodule ExChalk do
   alias IO.ANSI
 
   @colors [
-    "black",
-    "red",
-    "green",
-    "yellow",
-    "blue",
-    "magenta",
-    "cyan",
-    "white"
+    "black": ANSI.color(0),
+    "red": ANSI.color(1),
+    "green": ANSI.color(2),
+    "yellow": ANSI.color(3),
+    "blue": ANSI.color(4),
+    "magenta": ANSI.color(5),
+    "cyan": ANSI.color(6),
+    "white": ANSI.color(7),
+    "gray": "\e[90m",
+    "grey": "\e[90m"
+  ]
+
+  @bg_colors [
+    "black": ANSI.color_background(0),
+    "red": ANSI.color_background(1),
+    "green": ANSI.color_background(2),
+    "yellow": ANSI.color_background(3),
+    "blue": ANSI.color_background(4),
+    "magenta": ANSI.color_background(5),
+    "cyan": ANSI.color_background(6),
+    "white": ANSI.color_background(7)
   ]
 
   @modifiers [
@@ -82,26 +95,27 @@ defmodule ExChalk do
     strikethrough: "\e[9m"
   ]
 
-  for {name, code} <- Enum.with_index(@colors) do
+  for {name, code} <- @colors do
     def unquote(:"#{name}")(str) when is_list(str) do
       [prev_start, prev, prev_end] = str
 
-      [prev_start, [ANSI.color(unquote(code)), prev, ANSI.reset], prev_end]
+      [prev_start, [unquote(code), prev, ANSI.reset], prev_end]
     end
 
     def unquote(:"#{name}")(str) do
-      [ANSI.color(unquote(code)), str, ANSI.reset]
+      [unquote(code), str, ANSI.reset]
     end
+  end
 
+  for {name, code} <- @bg_colors do
     def unquote(:"bg_#{name}")(str) when is_list(str) do
       [prev_start, prev, prev_end] = str
-      next = ANSI.color_background(unquote(code))
 
-      [prev_start, [next, prev, ANSI.reset], prev_end]
+      [prev_start, [unquote(code), prev, ANSI.reset], prev_end]
     end
 
     def unquote(:"bg_#{name}")(str) do
-      [ANSI.color_background(unquote(code)), str, ANSI.reset]
+      [unquote(code), str, ANSI.reset]
     end
   end
 
@@ -116,14 +130,6 @@ defmodule ExChalk do
       [unquote(code), str, ANSI.reset]
     end
   end
-
-  def gray(str) when is_list(str) do
-    [prev_start, prev, prev_end] = str
-
-    [prev_start, ["\e[90m", prev, ANSI.reset], prev_end]
-  end
-  def gray(str), do: ["\e[90m", str, ANSI.reset]
-  def grey(str), do: gray(str)
 
   def to_str(list), do: IO.iodata_to_binary(list)
 end
