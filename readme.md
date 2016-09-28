@@ -13,7 +13,7 @@ In your `mix.exs`:
 ```elixir
 defp deps do
   [
-    { :exchalk, "~> 0.0.0" }
+    { :exchalk, "~> 1.0.0" }
   ]
 end
 ```
