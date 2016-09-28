@@ -4,7 +4,7 @@
 
 > Easier terminal styling
 
-This library is a very light abstraction over `IO.ANSI` that makes it easy to style text. It's heavily inspired by Node's [chalk](https://github.com/chalk/chalk).
+This library is a very light abstraction over [`IO.ANSI`](https://github.com/jbnicolai/ansi-256-colors) that makes it easy to style text. It's heavily inspired by Node's [`chalk`](https://github.com/chalk/chalk).
 
 ## Install
 
@@ -33,14 +33,6 @@ IO.puts ExChalk.red("Hello world!")
   |> ExChalk.bg_blue
   |> IO.puts
 ```
-
-## Why do I need to call `ExChalk.to_str` for string concatenation?
-
-ExChalk by default returns IO lists instead of strings. IO lists can be printed, but since they aren't strings the `<>` doesn't work (though interpolation does!).
-
-If you're planning on doing a lot of concatenation this may sound annoying, but there's a good reason. IO lists are a lot more performant than strings as they require less allocation and copying.
-
-See José's explanation in [this thread](https://elixirforum.com/t/implications-of-string-concatenation-vs-iolist-for-ansi-color-codes/1804) for more information.
 
 ## Styles
 
@@ -77,6 +69,14 @@ See José's explanation in [this thread](https://elixirforum.com/t/implications-
 - `bg_magenta`
 - `bg_cyan`
 - `bg_white`
+
+## Why do I need to call `ExChalk.to_str` for string concatenation?
+
+ExChalk by default returns IO lists instead of strings. IO lists can be printed, but since they aren't strings the `<>` doesn't work (though interpolation does!).
+
+If you're planning on doing a lot of concatenation this may sound annoying, but there's a good reason. IO lists are a lot more performant than strings as they require less allocation and copying.
+
+See José's explanation in [this thread](https://elixirforum.com/t/implications-of-string-concatenation-vs-iolist-for-ansi-color-codes/1804) for more information.
 
 ## 256-colors
 
