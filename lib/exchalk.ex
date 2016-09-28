@@ -1,5 +1,62 @@
 defmodule ExChalk do
-  @moduledoc false
+  @moduledoc """
+  Provides a simple interface to text color and styling.
+
+  ExChalk exposes three APIs: colors, background colors, and modifiers.
+
+  ## Colors
+
+  `ExChalk.color_name(text)` will color `text` with `color_name` color.
+
+  Supported colors are:
+
+  - `black`
+  - `red`
+  - `green`
+  - `yellow`
+  - `blue`
+  - `magenta`
+  - `cyan`
+  - `white`
+  - `gray`
+
+  Example: `ExChalk.red("Hello!")`
+
+  ## Background colors
+
+  `ExChalk.bg_color_name(text)` will color `text` with `bg_color_name`
+  background color.
+
+  Supported background colors are:
+
+  - `bg_black`
+  - `bg_red`
+  - `bg_green`
+  - `bg_yellow`
+  - `bg_blue`
+  - `bg_magenta`
+  - `bg_cyan`
+  - `bg_white`
+
+  Example: `ExChalk.bg_red("Hello!")`
+
+  ## Modifiers
+
+  `ExChalk.modifier(text)` will style `text` with a given `modifier`.
+
+  Supported modifiers are:
+
+  - `reset`
+  - `bold`
+  - `dim`
+  - `italic`
+  - `underline`
+  - `inverse`
+  - `hidden`
+  - `strikethrough`
+
+  Example: `ExChalk.italic("Hello!")`
+  """
 
   alias IO.ANSI
 
