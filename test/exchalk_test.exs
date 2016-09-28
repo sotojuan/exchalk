@@ -8,6 +8,13 @@ defmodule ExChalkTest do
     assert actual == expected
   end
 
+  test "should apply the latest style" do
+    actual = "hi" |> ExChalk.red |> ExChalk.blue |> ExChalk.to_str
+    expected = "\e[38;5;1m\e[38;5;4mhi\e[0m\e[0m"
+
+    assert actual == expected
+  end
+
   test "should style string with modifiers" do
     actual = ExChalk.underline("foo") |> ExChalk.to_str
     expected = "\e[4mfoo\e[0m"
@@ -38,7 +45,7 @@ defmodule ExChalkTest do
         |> ExChalk.blue
         |> ExChalk.italic
         |> ExChalk.to_str
-    expected = "\e[3m\e[38;5;4m\e[48;5;1mfoo\e[0m\e[0m\e[0m"
+    expected = "\e[48;5;1m\e[3m\e[38;5;4mfoo\e[0m\e[0m\e[0m"
 
     assert actual == expected
   end

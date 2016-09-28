@@ -83,8 +83,21 @@ defmodule ExChalk do
   ]
 
   for {name, code} <- Enum.with_index(@colors) do
+    def unquote(:"#{name}")(str) when is_list(str) do
+      [prev_start, prev, prev_end] = str
+
+      [prev_start, [ANSI.color(unquote(code)), prev, ANSI.reset], prev_end]
+    end
+
     def unquote(:"#{name}")(str) do
       [ANSI.color(unquote(code)), str, ANSI.reset]
+    end
+
+    def unquote(:"bg_#{name}")(str) when is_list(str) do
+      [prev_start, prev, prev_end] = str
+      next = ANSI.color_background(unquote(code))
+
+      [prev_start, [next, prev, ANSI.reset], prev_end]
     end
 
     def unquote(:"bg_#{name}")(str) do
@@ -93,11 +106,22 @@ defmodule ExChalk do
   end
 
   for {name, code} <- @modifiers do
+    def unquote(:"#{name}")(str) when is_list(str) do
+      [prev_start, prev, prev_end] = str
+
+      [prev_start, [unquote(code), prev, ANSI.reset], prev_end]
+    end
+
     def unquote(:"#{name}")(str) do
       [unquote(code), str, ANSI.reset]
     end
   end
 
+  def gray(str) when is_list(str) do
+    [prev_start, prev, prev_end] = str
+
+    [prev_start, ["\e[90m", prev, ANSI.reset], prev_end]
+  end
   def gray(str), do: ["\e[90m", str, ANSI.reset]
   def grey(str), do: gray(str)
 
