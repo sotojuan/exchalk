@@ -77,6 +77,7 @@ defmodule ExChalk do
     dim: ANSI.faint,
     italic: ANSI.italic,
     underline: ANSI.underline,
+    inverse: "\e[7m",
     hidden: "\e[8m",
     strikethrough: "\e[9m"
   ]
