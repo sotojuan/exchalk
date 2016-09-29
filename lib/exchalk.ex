@@ -131,5 +131,9 @@ defmodule ExChalk do
     end
   end
 
+  @doc """
+  Converts the given IO list to a string
+  """
+  @spec to_str(iodata) :: binary
   def to_str(list), do: IO.iodata_to_binary(list)
 end
