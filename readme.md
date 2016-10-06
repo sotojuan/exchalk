@@ -4,6 +4,8 @@
 
 > Easier terminal styling
 
+![](http://i.imgur.com/g4M9M0k.png)
+
 This library is a very light abstraction over [`IO.ANSI`](https://github.com/jbnicolai/ansi-256-colors) that makes it easy to style text. It's heavily inspired by Node's [`chalk`](https://github.com/chalk/chalk).
 
 ## Install
