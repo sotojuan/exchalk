@@ -58,6 +58,9 @@ defmodule ExChalk do
   Example: `ExChalk.italic("Hello!")`
   """
 
+  @color_reset "\e[39m"
+  @bg_reset "\e[49m"
+
   alias IO.ANSI
 
   @colors [
@@ -85,25 +88,25 @@ defmodule ExChalk do
   ]
 
   @modifiers [
-    reset: ANSI.reset,
-    bold: ANSI.bright,
-    dim: ANSI.faint,
-    italic: ANSI.italic,
-    underline: ANSI.underline,
-    inverse: "\e[7m",
-    hidden: "\e[8m",
-    strikethrough: "\e[9m"
+    reset: {ANSI.reset, ANSI.reset},
+    bold: {ANSI.bright, "\e[22m"},
+    dim: {ANSI.faint, "\e[22m"},
+    italic: {ANSI.italic, "\e[23m"},
+    underline: {ANSI.underline, "\e[24m"},
+    inverse: {"\e[7m", "\e[27m"},
+    hidden: {"\e[8m", "\e[28m"},
+    strikethrough: {"\e[9m", "\e[29m"}
   ]
 
   for {name, code} <- @colors do
     def unquote(:"#{name}")(str) when is_list(str) do
       [prev_start, prev, prev_end] = str
 
-      [prev_start, [unquote(code), prev, ANSI.reset], prev_end]
+      [prev_start, [unquote(code), prev, @color_reset], prev_end]
     end
 
     def unquote(:"#{name}")(str) do
-      [unquote(code), str, ANSI.reset]
+      [unquote(code), str, @color_reset]
     end
   end
 
@@ -111,23 +114,23 @@ defmodule ExChalk do
     def unquote(:"bg_#{name}")(str) when is_list(str) do
       [prev_start, prev, prev_end] = str
 
-      [prev_start, [unquote(code), prev, ANSI.reset], prev_end]
+      [prev_start, [unquote(code), prev, @bg_reset], prev_end]
     end
 
     def unquote(:"bg_#{name}")(str) do
-      [unquote(code), str, ANSI.reset]
+      [unquote(code), str, @bg_reset]
     end
   end
 
-  for {name, code} <- @modifiers do
+  for {name, {start, reset}} <- @modifiers do
     def unquote(:"#{name}")(str) when is_list(str) do
       [prev_start, prev, prev_end] = str
 
-      [prev_start, [unquote(code), prev, ANSI.reset], prev_end]
+      [prev_start, [unquote(start), prev, unquote(reset)], prev_end]
     end
 
     def unquote(:"#{name}")(str) do
-      [unquote(code), str, ANSI.reset]
+      [unquote(start), str, unquote(reset)]
     end
   end
 
