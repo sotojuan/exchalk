@@ -82,7 +82,7 @@ See José's explanation in [this thread](https://elixirforum.com/t/implications-
 
 ## 256-colors
 
-ExChalk does not support anything other than the base eight colors, which guarantees it will work on all terminals and systems. For this the lower level [`IO.ANSI`](https://github.com/jbnicolai/ansi-256-colors) or the awesome [Bunt](https://github.com/rrrene/bunt) can be used.
+ExChalk does not support anything other than the base eight colors, which guarantees it will work on all terminals and systems. Some terminals, specifically `xterm` compliant ones, will support the full range of 8-bit colors. For this, the lower level [`IO.ANSI`](https://hexdocs.pm/elixir/IO.ANSI.html) or the awesome [Bunt](https://github.com/rrrene/bunt) can be used.
 
 ## Windows
 
