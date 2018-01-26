@@ -6,8 +6,8 @@ defmodule ExChalk.Mixfile do
       app: :exchalk,
       version: "1.0.2",
       elixir: "~> 1.3",
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
       deps: deps()

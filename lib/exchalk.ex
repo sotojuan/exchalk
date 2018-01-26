@@ -64,35 +64,35 @@ defmodule ExChalk do
   alias IO.ANSI
 
   @colors [
-    "black": ANSI.color(0),
-    "red": ANSI.color(1),
-    "green": ANSI.color(2),
-    "yellow": ANSI.color(3),
-    "blue": ANSI.color(4),
-    "magenta": ANSI.color(5),
-    "cyan": ANSI.color(6),
-    "white": ANSI.color(7),
-    "gray": "\e[90m",
-    "grey": "\e[90m"
+    black: ANSI.color(0),
+    red: ANSI.color(1),
+    green: ANSI.color(2),
+    yellow: ANSI.color(3),
+    blue: ANSI.color(4),
+    magenta: ANSI.color(5),
+    cyan: ANSI.color(6),
+    white: ANSI.color(7),
+    gray: "\e[90m",
+    grey: "\e[90m"
   ]
 
   @bg_colors [
-    "black": ANSI.color_background(0),
-    "red": ANSI.color_background(1),
-    "green": ANSI.color_background(2),
-    "yellow": ANSI.color_background(3),
-    "blue": ANSI.color_background(4),
-    "magenta": ANSI.color_background(5),
-    "cyan": ANSI.color_background(6),
-    "white": ANSI.color_background(7)
+    black: ANSI.color_background(0),
+    red: ANSI.color_background(1),
+    green: ANSI.color_background(2),
+    yellow: ANSI.color_background(3),
+    blue: ANSI.color_background(4),
+    magenta: ANSI.color_background(5),
+    cyan: ANSI.color_background(6),
+    white: ANSI.color_background(7)
   ]
 
   @modifiers [
-    reset: {ANSI.reset, ANSI.reset},
-    bold: {ANSI.bright, "\e[22m"},
-    dim: {ANSI.faint, "\e[22m"},
-    italic: {ANSI.italic, "\e[23m"},
-    underline: {ANSI.underline, "\e[24m"},
+    reset: {ANSI.reset(), ANSI.reset()},
+    bold: {ANSI.bright(), "\e[22m"},
+    dim: {ANSI.faint(), "\e[22m"},
+    italic: {ANSI.italic(), "\e[23m"},
+    underline: {ANSI.underline(), "\e[24m"},
     inverse: {"\e[7m", "\e[27m"},
     hidden: {"\e[8m", "\e[28m"},
     strikethrough: {"\e[9m", "\e[29m"}
