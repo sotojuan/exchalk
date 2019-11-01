@@ -26,7 +26,7 @@ defmodule ExChalk.Mixfile do
 
   defp deps do
     [
-      {:ex_doc, "~> 0.15", only: :dev}
+      {:ex_doc, "~> 0.21.2", only: :dev}
     ]
   end
 
