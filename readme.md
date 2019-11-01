@@ -1,7 +1,5 @@
 # exchalk
 
-[![Build Status](https://travis-ci.org/sotojuan/exchalk.svg?branch=master)](https://travis-ci.org/sotojuan/exchalk)
-
 > Easier terminal styling
 
 ![](http://i.imgur.com/g4M9M0k.png)
